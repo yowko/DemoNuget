@@ -191,7 +191,7 @@ function HandlePublishError {
 
 	if ($setupTask.ExitCode -eq 0) {
 		# Try to push package again
-		$publishTask = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url)
+		$publishTask = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url+" -Timeout 30")
 		$publishTask.Start() | Out-Null
 		$publishTask.WaitForExit()
 			
