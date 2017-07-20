@@ -229,7 +229,7 @@ function Publish {
 		Get-ChildItem *.nupkg | Where-Object { $_.Name.EndsWith(".symbols.nupkg") -eq $false } | ForEach-Object { 
 
 			# Try to push package
-			$task = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url +" -NonInteractive")
+			$task = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url +" -Timeout 30")
 			$task.Start() | Out-Null
 			$task.WaitForExit()
 			
