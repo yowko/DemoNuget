@@ -191,7 +191,7 @@ function HandlePublishError {
 
 	if ($setupTask.ExitCode -eq 0) {
 		# Try to push package again
-		$publishTask = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url+" -Timeout 30")
+		$publishTask = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url + " -ApiKey K),A9pmK5\yRke=~")
 		$publishTask.Start() | Out-Null
 		$publishTask.WaitForExit()
 			
@@ -229,7 +229,7 @@ function Publish {
 		Get-ChildItem *.nupkg | Where-Object { $_.Name.EndsWith(".symbols.nupkg") -eq $false } | ForEach-Object { 
 
 			# Try to push package
-			$task = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url +" -Timeout 30")
+			$task = Create-Process .\NuGet.exe ("push " + $_.Name + " -Source " + $url + " -ApiKey K),A9pmK5\yRke=~")
 			$task.Start() | Out-Null
 			$task.WaitForExit()
 			
