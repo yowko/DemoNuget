@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Model.Demo</id>
+    <version>1.0.0</version>
+    <title>Model.Demo</title>
+    <authors>YowkoTsai</authors>
+    <owners></owners>
+    <description>
+      Demo Model NuGet
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+      Demo Model NuGet
+    </summary>
+    <language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright  2017</copyright>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+  </files>
+</package>
