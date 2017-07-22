@@ -274,10 +274,10 @@ Write-Log (Invoke-Command {.\NuGet.exe update -Self} -ErrorAction Stop)
 
 Write-Log " "
 Write-Log "Creating package..." -ForegroundColor Green
-
+$dllversion=get-childitem .\lib -recurse -include *.dll| foreach-object { "{0}" -f [System.Diagnostics.FileVersionInfo]::GetVersionInfo($_).FileVersion }|Select-Object -First 1 
 # Create symbols package if any .pdb files are located in the lib folder
 If ((Get-ChildItem *.pdb -Path .\lib -Recurse).Count -gt 0) {
-	$packageTask = Create-Process .\NuGet.exe ("pack Package.nuspec -Symbol -Verbosity Detailed")
+	$packageTask = Create-Process .\NuGet.exe ("pack Package.nuspec -Version "+ "$dllversion" +" -Symbol -Verbosity Detailed")
 	$packageTask.Start() | Out-Null
 	$packageTask.WaitForExit()
 			
@@ -289,7 +289,7 @@ If ((Get-ChildItem *.pdb -Path .\lib -Recurse).Count -gt 0) {
 	$global:ExitCode = $packageTask.ExitCode
 }
 Else {
-	$packageTask = Create-Process .\NuGet.exe ("pack Package.nuspec -Verbosity Detailed")
+	$packageTask = Create-Process .\NuGet.exe ("pack Package.nuspec -Version "+ "$dllversion" +" -Verbosity Detailed")
 	$packageTask.Start() | Out-Null
 	$packageTask.WaitForExit()
 			
